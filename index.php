@@ -22,14 +22,27 @@
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$titleCan = $_POST["titleCan"];
 			$titleCant = $_POST["titleCant"];
+			$descCan = $_POST["descCan"];
+			$descCant = $_POST["descCant"];
+			$authorCan = $_POST["authorCan"];
+			$authorCant = $_POST["authorCant"];
 			$url = 'http://gdata.youtube.com/feeds/api/users/3dsfun/newsubscriptionvideos';
 			$xml = simplexml_load_file($url);
+			
+			echo '<table>';
 			foreach ($xml->entry as $entry) {
 				$title = $entry->title;
-				if (strpos($title, $titleCan) !== FALSE and strpos($title, $titleCant) === FALSE){
-					echo $entry->title . '<br>';
+				$desc = $entry->description;
+				$author = $entry->author->name;
+				if ((strpos($title, $titleCan) !== FALSE or strpos($title, $titleCant) === FALSE)
+					and (strpos($desc, $descCan) !== FALSE or strpos($desc, $descCant) === FALSE)
+					and (strpos($author, $authorCan) !== FALSE or strpos($author, $authorCant) === FALSE)){
+					echo '<tr>';
+					echo '<td>' . $entry->title . '</td>' . '<td>' . $entry->author->name . '</td>';
+					echo '</tr>';
 				}
 			}
+			echo '</table>';
 		}
 	?>
 </body>
