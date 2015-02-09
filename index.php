@@ -29,17 +29,17 @@
 			$url = 'http://gdata.youtube.com/feeds/api/users/3dsfun/newsubscriptionvideos';
 			$xml = simplexml_load_file($url);
 			
-			echo '<table>';
+			echo '<h2>Videos</h2><table>';
 			foreach ($xml->entry as $entry) {
 				$id = substr($entry->id, strrpos($entry->id, '/') + 1);
-				$title = $entry->title;
-				$desc = $entry->content;
-				$author = $entry->author->name;
+				$title = html_entity_decode($entry->title);
+				$desc = html_entity_decode($entry->content);
+				$author = html_entity_decode($entry->author->name);
 				if ((strpos($title, $titleCan) !== FALSE or strpos($title, $titleCant) === FALSE)
 					and (strpos($desc, $descCan) !== FALSE or strpos($desc, $descCant) === FALSE)
 					and (strpos($author, $authorCan) !== FALSE or strpos($author, $authorCant) === FALSE)){
 					echo '<tr>';
-					echo '<td>' . $entry->title . '</td><td>'  . $entry->author->name . '</td></tr><tr><td><iframe width="854" height="510" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></td><td>' . $entry->content . '</td></tr>';
+					echo '<td><h3>' . $entry->title . '</h3></td><td><h4>'  . $entry->author->name . '</h4></td></tr><tr><td><iframe width="427" height="255" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></td><td>' . $entry->content . '</td></tr>';
 					echo '</tr>';
 				}
 			}
