@@ -38,13 +38,6 @@
 				$desc = $entry->content;
 				$author = $entry->author->name;
 				
-				// while ($titleCansp !== FALSE or $descCansp !== FALSE or $authorCansp !== FALSE or $titleCantsp !== FALSE or $descCantsp !== FALSE or $authorCantsp !== FALSE) {
-					// if (((strlen($titleCansp) < 1 or strpos($title, $titleCansp) !== FALSE) and (strlen($titleCantsp) < 1 or strpos($title, $titleCantsp) === FALSE))
-						// and ((strlen($descCansp) < 1 or strpos($desc, $descCansp) !== FALSE) and (strlen($descCantsp) < 1 or strpos($desc, $descCantsp) === FALSE))
-						// and ((strlen($authorCansp) < 1 or strpos($author, $authorCansp) !== FALSE) and (strlen($authorCantsp) < 1 or strpos($author, $authorCantsp) === FALSE))){
-						// $shouldDisplay = TRUE;
-					// }
-				// }
 				$shouldDisplay1 = strlen($titleCan) < 1;
 				$titleCansp = strtok($titleCan, $splitCode);
 				while ($titleCansp !== FALSE) {
@@ -53,7 +46,6 @@
 					}
 					$titleCansp = strtok($splitCode);
 				}
-				//$shouldDisplay1 = 
 				
 				$shouldDisplay2 = strlen($titleCant) < 1;
 				$titleCantsp = strtok($titleCant, $splitCode);
@@ -63,7 +55,6 @@
 					}
 					$titleCantsp = strtok($splitCode);
 				}
-				//$shouldDisplay2 = 
 				
 				$shouldDisplay3 = strlen($descCan) < 1;
 				$descCansp = strtok($descCan, $splitCode);
@@ -73,7 +64,6 @@
 					}
 					$descCansp = strtok($splitCode);
 				}
-				//$shouldDisplay3 = 
 				
 				$shouldDisplay4 = strlen($descCant) < 1;
 				$descCantsp = strtok($descCant, $splitCode);
@@ -83,7 +73,6 @@
 					}
 					$descCantsp = strtok($splitCode);
 				}
-				//$shouldDisplay4 = 
 				
 				$shouldDisplay5 = strlen($authorCan) < 1;
 				$authorCansp = strtok($authorCan, $splitCode);
@@ -93,7 +82,6 @@
 					}
 					$authorCansp = strtok($splitCode);
 				}
-				//$shouldDisplay5 = 
 				
 				$shouldDisplay6 = strlen($authorCant) < 1;
 				$authorCantsp = strtok($authorCant, $splitCode);
@@ -103,7 +91,6 @@
 					}
 					$authorCantsp = strtok($splitCode);
 				}
-				//$shouldDisplay6 = 
 				
 				if ($shouldDisplay1 and $shouldDisplay2 and $shouldDisplay3 and $shouldDisplay4 and $shouldDisplay5 and $shouldDisplay6) {
 					echo '<tr>';
