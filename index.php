@@ -47,11 +47,11 @@
 					$titleCansp = strtok($splitCode);
 				}
 				
-				$shouldDisplay2 = strlen($titleCant) < 1;
+				$shouldDisplay2 = TRUE;
 				$titleCantsp = strtok($titleCant, $splitCode);
 				while ($titleCantsp !== FALSE) {
-					if (strpos($title, $titleCantsp) === FALSE) {
-						$shouldDisplay2 = TRUE;
+					if (strpos($title, $titleCantsp) !== FALSE) {
+						$shouldDisplay2 = FALSE;
 					}
 					$titleCantsp = strtok($splitCode);
 				}
@@ -65,11 +65,11 @@
 					$descCansp = strtok($splitCode);
 				}
 				
-				$shouldDisplay4 = strlen($descCant) < 1;
+				$shouldDisplay4 = TRUE;
 				$descCantsp = strtok($descCant, $splitCode);
 				while ($descCantsp !== FALSE) {
-					if (strpos($desc, $descCantsp) === FALSE) {
-						$shouldDisplay4 = TRUE;
+					if (strpos($desc, $descCantsp) !== FALSE) {
+						$shouldDisplay4 = FALSE;
 					}
 					$descCantsp = strtok($splitCode);
 				}
@@ -83,11 +83,11 @@
 					$authorCansp = strtok($splitCode);
 				}
 				
-				$shouldDisplay6 = strlen($authorCant) < 1;
+				$shouldDisplay6 = TRUE;
 				$authorCantsp = strtok($authorCant, $splitCode);
 				while ($authorCantsp !== FALSE) {
-					if (strpos($author, $authorCantsp) === FALSE) {
-						$shouldDisplay6 = TRUE;
+					if (strpos($author, $authorCantsp) !== FALSE) {
+						$shouldDisplay6 = FALSE;
 					}
 					$authorCantsp = strtok($splitCode);
 				}
