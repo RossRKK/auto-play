@@ -33,7 +33,6 @@
 			
 			echo '<h2>Videos</h2><table>';
 			foreach ($xml->entry as $entry) {
-				$shouldDisplay = FALSE;
 				$id = substr($entry->id, strrpos($entry->id, '/') + 1);
 				$title = $entry->title;
 				$desc = $entry->content;
@@ -46,55 +45,67 @@
 						// $shouldDisplay = TRUE;
 					// }
 				// }
+				$shouldDisplay1 = strlen($titleCan) < 1;
 				$titleCansp = strtok($titleCan, $splitCode);
 				while ($titleCansp !== FALSE) {
 					if (strpos($title, $titleCansp) !== FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay1 = TRUE;
 					}
 					$titleCansp = strtok($splitCode);
 				}
+				//$shouldDisplay1 = 
 				
+				$shouldDisplay2 = strlen($titleCant) < 1;
 				$titleCantsp = strtok($titleCant, $splitCode);
 				while ($titleCantsp !== FALSE) {
 					if (strpos($title, $titleCantsp) === FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay2 = TRUE;
 					}
 					$titleCantsp = strtok($splitCode);
 				}
+				//$shouldDisplay2 = 
 				
+				$shouldDisplay3 = strlen($descCan) < 1;
 				$descCansp = strtok($descCan, $splitCode);
 				while ($descCansp !== FALSE) {
 					if (strpos($desc, $descCansp) !== FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay3 = TRUE;
 					}
 					$descCansp = strtok($splitCode);
 				}
+				//$shouldDisplay3 = 
 				
+				$shouldDisplay4 = strlen($descCant) < 1;
 				$descCantsp = strtok($descCant, $splitCode);
 				while ($descCantsp !== FALSE) {
 					if (strpos($desc, $descCantsp) === FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay4 = TRUE;
 					}
 					$descCantsp = strtok($splitCode);
 				}
+				//$shouldDisplay4 = 
 				
+				$shouldDisplay5 = strlen($authorCan) < 1;
 				$authorCansp = strtok($authorCan, $splitCode);
 				while ($authorCansp !== FALSE) {
 					if (strpos($author, $authorCansp) !== FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay5 = TRUE;
 					}
 					$authorCansp = strtok($splitCode);
 				}
+				//$shouldDisplay5 = 
 				
+				$shouldDisplay6 = strlen($authorCant) < 1;
 				$authorCantsp = strtok($authorCant, $splitCode);
 				while ($authorCantsp !== FALSE) {
 					if (strpos($author, $authorCantsp) === FALSE) {
-						$shouldDisplay = TRUE;
+						$shouldDisplay6 = TRUE;
 					}
 					$authorCantsp = strtok($splitCode);
 				}
+				//$shouldDisplay6 = 
 				
-				if ($shouldDisplay) {
+				if ($shouldDisplay1 and $shouldDisplay2 and $shouldDisplay3 and $shouldDisplay4 and $shouldDisplay5 and $shouldDisplay6) {
 					echo '<tr>';
 					echo '<td><h3>' . $entry->title . '</h3></td><td><h4>'  . $entry->author->name . '</h4></td></tr><tr><td><iframe width="427" height="255" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></td><td>' . $entry->content . '</td></tr>';
 					echo '</tr>';	
