@@ -1,0 +1,13 @@
+body {
+	font-family: Arial;
+	width: 90%;
+}
+
+#desc {
+	word-wrap: break-word;
+}
+
+iframe {
+	width: 65%;
+	height: 65%;
+}

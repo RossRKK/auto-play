@@ -3,6 +3,7 @@
 	<title>
 	Auto-Play
 	</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -31,7 +32,7 @@
 			$url = 'http://gdata.youtube.com/feeds/api/users/3dsfun/newsubscriptionvideos';
 			$xml = simplexml_load_file($url);
 			
-			echo '<h2>Videos</h2><table>';
+			echo '<h2>Videos</h2>';
 			foreach ($xml->entry as $entry) {
 				$id = substr($entry->id, strrpos($entry->id, '/') + 1);
 				$title = $entry->title;
@@ -94,11 +95,11 @@
 				
 				if ($shouldDisplay1 and $shouldDisplay2 and $shouldDisplay3 and $shouldDisplay4 and $shouldDisplay5 and $shouldDisplay6) {
 					echo '<tr>';
-					echo '<td><h3>' . $entry->title . '</h3></td><td><h4>'  . $entry->author->name . '</h4></td></tr><tr><td><iframe width="427" height="255" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></td><td>' . $entry->content . '</td></tr>';
+					echo '<div id="video"><h3>' . htmlentities($entry->title) . '</h3><iframe  src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div><div id="desc"><h4>'  . $entry->author->name . '</h4>' . htmlentities($entry->content) . '</div>';
 					echo '</tr>';	
+					//width="854" height="510"
 				}
 			}
-			echo '</table>';
 		}
 	?>
 </body>
