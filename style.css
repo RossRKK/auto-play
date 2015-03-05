@@ -11,3 +11,7 @@ iframe {
 	width: 65%;
 	height: 65%;
 }
+
+#counter {
+	visibility: hidden;
+}
