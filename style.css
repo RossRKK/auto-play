@@ -1,17 +1,43 @@
 body {
 	font-family: Arial;
 	width: 90%;
+	max-width: 800px;
+	font-size: 100%;
+	background-color: #fcfcfc;
+}
+
+img {
+	position: relative;
+	vertical-align: middle;
+	padding: 3px;
+	width: 77px;
+	height: 54px;
 }
 
 #desc {
 	word-wrap: break-word;
 }
 
-iframe {
-	width: 65%;
-	height: 65%;
+#video {
+	position: relative;
+	width: 100%;	
+}
+#video:before{
+	content: "";
+	display: block;
+	padding-top: 56.25%;
 }
 
-#counter {
-	visibility: hidden;
+.table {
+	width: 100%;
+}
+
+iframe {
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
 }
