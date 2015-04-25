@@ -64,7 +64,26 @@
 		<input type="submit" value="Submit">
 	</form>
 	<?php
-		$splitCode = '/';
+		function shouldDisplay ($can, $cant, $i, $arr) {
+			$splitCode = '/';
+			$disp1 = strlen($can) < 1;
+			$disp2 = TRUE;
+			$cansp = strtok($can, $splitCode);
+			while ($cansp !== FALSE) {
+				if (strpos(strtolower($arr[$i]), strtolower($cansp)) !== FALSE) {
+					$disp1 = TRUE;
+				}
+				$cansp = strtok($splitCode);
+			}
+			$cantsp = strtok($cant, $splitCode);
+			while ($cantsp !== FALSE) {
+				if (strpos(strtolower($arr[$i]), strtolower($cantsp)) !== FALSE) {
+					$disp2 = FALSE;
+				}
+				$cantsp = strtok($splitCode);
+			}
+			return $disp1 and $disp2;
+		}
 		
 		if ($_SERVER["REQUEST_METHOD"] == "GET" and $user) {
 			
@@ -74,67 +93,13 @@
 				$title = $entry->title;
 				$desc = $entry->content;
 				$author = $entry->author->name;
-				
-				$shouldDisplay1 = strlen($titleCan) < 1;
-				$titleCansp = strtok($titleCan, $splitCode);
-				while ($titleCansp !== FALSE) {
-					if (strpos(strtolower($title), strtolower($titleCansp)) !== FALSE) {
-						$shouldDisplay1 = TRUE;
-					}
-					$titleCansp = strtok($splitCode);
-				}
-				
-				$shouldDisplay2 = TRUE;
-				$titleCantsp = strtok($titleCant, $splitCode);
-				while ($titleCantsp !== FALSE) {
-					if (strpos(strtolower($title), strtolower($titleCantsp)) !== FALSE) {
-						$shouldDisplay2 = FALSE;
-					}
-					$titleCantsp = strtok($splitCode);
-				}
-				
-				$shouldDisplay3 = strlen($descCan) < 1;
-				$descCansp = strtok($descCan, $splitCode);
-				while ($descCansp !== FALSE) {
-					if (strpos(strtolower($desc), strtolower($descCansp)) !== FALSE) {
-						$shouldDisplay3 = TRUE;
-					}
-					$descCansp = strtok($splitCode);
-				}
-				
-				$shouldDisplay4 = TRUE;
-				$descCantsp = strtok($descCant, $splitCode);
-				while ($descCantsp !== FALSE) {
-					if (strpos(strtolower($desc), strtolower($descCantsp)) !== FALSE) {
-						$shouldDisplay4 = FALSE;
-					}
-					$descCantsp = strtok($splitCode);
-				}
-				
-				$shouldDisplay5 = strlen($authorCan) < 1;
-				$authorCansp = strtok($authorCan, $splitCode);
-				while ($authorCansp !== FALSE) {
-					if (strpos(strtolower($author), strtolower($authorCansp)) !== FALSE) {
-						$shouldDisplay5 = TRUE;
-					}
-					$authorCansp = strtok($splitCode);
-				}
-				
-				$shouldDisplay6 = TRUE;
-				$authorCantsp = strtok($authorCant, $splitCode);
-				while ($authorCantsp !== FALSE) {
-					if (strpos(strtolower($author), strtolower($authorCantsp)) !== FALSE) {
-						$shouldDisplay6 = FALSE;
-					}
-					$authorCantsp = strtok($splitCode);
-				}
-				
-				if ($shouldDisplay1 and $shouldDisplay2 and $shouldDisplay3 and $shouldDisplay4 and $shouldDisplay5 and $shouldDisplay6) {
+
+				$arr = array($id, $title, $desc, $author);
+
+				if (shouldDisplay($titleCan, $titleCant, 1, $arr) and shouldDisplay($descCan, $descCant, 2, $arr) and shouldDisplay($authorCan, $authorCant, 3, $arr)) {
 					echo '<tr>';
 					echo '<h3>' . htmlentities($entry->title) . '</h3><div id="video"><iframe  src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div><div id="desc"><h4>'  . $entry->author->name . '</h4>' . htmlentities($entry->content) . '</div>';
-					echo '</tr>';	
-					//width="854" height="510"
-				}
+					echo '</tr>';				}
 			}
 		}
 	?>
